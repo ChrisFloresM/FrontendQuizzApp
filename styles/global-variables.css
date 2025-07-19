@@ -1,0 +1,103 @@
+:root {
+
+    /* ======== Colors ======== */
+    /* White & Black */
+    --white: #ffffff;
+    --black: #000000;
+
+    /* Grey scale */
+    --grey-500: #626C7F;
+    --grey-50: #F4F6FA;
+
+    /* Blue */
+    --blue-950: #2D3949;
+    --blue-900: #313E51;
+    --blue-850: #3B4D66;
+    --blue-500: #306AFF;
+    --blue-300: #ABC1E1;
+    --blue-100: #EDF1F9;
+    --blue-50: #EBF0FF;
+
+    /* Green */
+    --green-500: #2FD887;
+    --green-100: #E0FDEF;
+
+    /* Purple */
+    --purple-600: #A729F5;
+    --purple-100: #F6E7FF;
+
+    /* Orange */
+    --orange-400: #FF7E35;
+    --orange-50:  #FFF5ED;
+
+    /* Red */
+    --red-500: #EE5454;
+
+    /* ======== Typography ======== */
+    /* Font family */
+    --font-rubik: 'Rubik', monospace;
+
+    /* Text Preset 1 */
+    --text-1-size: 14.4rem;
+    --text-1-line-height: 100%;
+    --text-1-letter-spacing: 0;
+
+    /* Text Preset 2 */
+    --text-2-size: 6.4rem;
+    --text-2-line-height: 100%;
+    --text-2-letter-spacing: 0;
+
+    /* Text Preset 3 */
+    --text-3-size: 3.6rem;
+    --text-3-line-height: 120%;
+    --text-3-letter-spacing: 0;
+
+    /* Text Preset 4 */
+    --text-4-size: 2.8rem;
+    --text-4-line-height: 100%;
+    --text-4-letter-spacing: 0;
+
+    /* Text Preset 5 */
+    --text-5-size: 2.4rem;
+    --text-5-line-height: 150%;
+    --text-5-letter-spacing: 0;
+
+    /* Text Preset 6 */
+    --text-6-size: 2rem;
+    --text-6-line-height: 150%;
+    --text-6-letter-spacing: 0;
+
+    /* Text preset 1 mobile */
+    --text-1-mobile-size: 8.8rem;
+
+    /* Text preset 2 mobile */
+    --text-2-mobile-size: 4rem;
+
+    /* Text preset 3 mobile */
+    --text-3-mobile-size: 2rem;
+
+    /* Text preset 4 mobile */
+    --text-4-mobile-size: 1.8rem;
+
+    /* Text preset 5 mobile */
+    --text-5-mobile-size: 1.4rem;
+
+    /* weight */
+    --text-medium: 500;
+    --text-light: 300;
+    --text-regular: 400;
+    --text-italic: italic;
+
+    /* ======== Spacing ======== */
+    --spacing-100: 0.8rem;
+    --spacing-200: 1.6rem;
+    --spacing-300: 2.4rem;
+    --spacing-400: 3.2rem;
+    --spacing-500: 4rem;
+    --spacing-600: 4.8rem;
+    --spacing-800: 6.4rem;
+    --spacing-1600: 12.8rem;
+    --spacing-1800: 14.4rem;
+    --spacing-2300: 18.4rem;
+}
+

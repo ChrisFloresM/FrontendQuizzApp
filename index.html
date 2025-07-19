@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Fonts: Rubik -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+
+	<link rel="stylesheet" type="text/css" href="styles/reset.css">
+	<link rel="stylesheet" type="text/css" href="styles/global-variables.css">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+  
+  <title>Frontend Mentor | Frontend quiz app</title>
+</head>
+<body>
+	<main class="main-app">
+		<div class="main-app__top-box">
+			<div class="main-app__topic-box">
+				<div class="main-app__topic-icon-box btn-accessibility">
+					<img class="main-app__topic-icon" src="img/icon-accessibility.svg" alt="An icon referent to current topic - accessibility"></div>
+				<p class="main-app__topic-name text-4">Accessibility</p>
+			</div>
+			<div class="main-app__theme-box">
+				<img class="main-app__theme-box-sun" src="img/icon-sun-light.svg" alt="An icon of a sun representing light theme">
+				<button class="main-app__theme-button" type="button">
+					<span class="main-app__theme-button-thumb"></span>
+				</button>
+			</div>
+		</div>
+		<div class="main-app__view score-view"> <!-- Change current view-->
+			<div class="main-app__left-top-content">
+				<div class="main-app__quiz-welcome">
+					<h1 class="text-2 text-light">Welcome to the <span
+						class="fe-quiz-text text-2 text-medium"
+					>Frontend Quiz!</span></h1>
+					<p class="pick-subj-text text-6 text-italic">Pick a subject to get started</p>
+				</div>
+
+				<div class="main-app__quiz-question-box">
+					<p class="main-app__quiz-question-num text-6 text-italic">Question <span class="current-question-num">6</span> of <span class="total-questions">10</span></p>
+					<p class="main-app__quiz-question text-3">Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text</p>
+					<div class="main-app__quiz-progress-bar">
+						<div class="main-app__quiz-current-progress"></div>
+					</div>
+				</div>
+
+				<div class="main-app__quiz-score-box">
+					<p class="text-2 text-light">Quiz completed<span class="text-2 text-medium text-block">You scored...</span></p>
+				</div>
+			</div>
+			<div class="main-app__right-bottom-content">
+				<div class="main-app__buttons">
+					<button class="main-app__button" type="button">
+						<span class="main-app__button-side-content btn-html main-app__topic-icon-box">
+							<img class="main-app__topic-icon-btn" src="img/icon-html.svg" alt="An icon refernt to HTML topic">
+							<span class="main-app--answer-option text-4">A</span>
+						</span>
+						<span class="main-app__topic-btn-text text-4 text-medium">HTML</span>
+					</button>
+
+					<button class="main-app__button" type="button">
+						<span class="main-app__button-side-content btn-css main-app__topic-icon-box">
+							<img class="main-app__topic-icon-btn" src="img/icon-css.svg" alt="An icon refernt to CSS topic">
+							<span class="main-app--answer-option text-4">B</span>
+						</span>
+						<span class="main-app__topic-btn-text text-4 text-medium">CSS</span>
+					</button>
+
+					<button class="main-app__button" type="button">
+						<span class="main-app__button-side-content btn-js main-app__topic-icon-box">
+							<img class="main-app__topic-icon-btn" src="img/icon-js.svg" alt="An icon refernt to JS topic">
+							<span class="main-app--answer-option text-4">C</span>
+						</span>
+						<span class="main-app__topic-btn-text text-4 text-medium">Javascript</span>
+					</button>
+
+					<button class="main-app__button" type="button">
+						<span class="main-app__button-side-content btn-accessibility main-app__topic-icon-box">
+							<img class="main-app__topic-icon-btn" src="img/icon-accessibility.svg" alt="An icon refernt to accessibility topic">
+							<span class="main-app--answer-option text-4">D</span>
+						</span>
+						<span class="main-app__topic-btn-text text-4 text-medium">Accessibility</span>
+					</button>
+				</div>
+				<div class="main-app__final-score">
+					<div class="main-app__topic-box">
+						<div class="main-app__topic-icon-box btn-accessibility">
+							<img class="main-app__topic-icon" src="img/icon-accessibility.svg" alt="An icon referent to current topic - accessibility"></div>
+						<p class="main-app__topic-name text-4">Accessibility</p>
+					</div>
+					<div class="main-app__score-box">
+						<p class="text-1">8</p>
+						<p class="text-5 text-regular">out of <span>10</span></p>
+					</div>
+				</div>
+				<button class="main-app__button multi-function-btn text-4 text-medium" type="button">Submit Answer</button>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
