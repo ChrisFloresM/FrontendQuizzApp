@@ -33,6 +33,14 @@
     /* Red */
     --red-500: #EE5454;
 
+    /* Theming */
+    --primary-font-color: var(--blue-900);
+    --background-color-btn: var(--white);
+    --secondary-font-color: var(--grey-500);
+    --body-background: var(--grey-50) url("../img/pattern-background-desktop-light.svg") center / cover no-repeat;
+    --secondary-background: var(--white);
+    --box-shadow: 0 16px 40px 0 rgba(143, 160, 193, 0.14);
+
     /* ======== Typography ======== */
     /* Font family */
     --font-rubik: 'Rubik', monospace;
@@ -101,3 +109,11 @@
     --spacing-2300: 18.4rem;
 }
 
+[data-theme='dark'] {
+    --primary-font-color: var(--white);
+    --background-color-btn: var(--blue-850);
+    --secondary-font-color: var(--blue-300);
+    --body-background: var(--blue-900) url("../img/pattern-background-desktop-dark.svg") center / cover no-repeat;
+    --secondary-background: var(--blue-850);
+    --box-shadow: 0 16px 40px 0 rgba(49, 62, 81, 0.14);
+}
