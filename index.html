@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="styles/global-variables.css">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 
+	<!-- Scripts -->
+	<script defer src="scripts/main.js"></script>
+
   
   <title>Frontend Mentor | Frontend quiz app</title>
 </head>
@@ -27,14 +30,14 @@
 				<p class="main-app__topic-name text-4">Accessibility</p>
 			</div>
 			<div class="main-app__theme-box">
-				<img class="main-app__theme-box-icon" src="img/icon-sun-dark.svg" alt="An icon of a sun representing light theme">
-				<button class="main-app__theme-button" type="button">
+				<img class="main-app__theme-box-icon icon-sun" src="img/icon-sun-dark.svg" alt="An icon of a sun representing light theme">
+				<button class="main-app__theme-button" type="button" aria-label="theme-change">
 					<span class="main-app__theme-button-thumb"></span>
 				</button>
-				<img class="main-app__theme-box-icon" src="img/icon-moon-dark.svg" alt="An icon of a sun representing light theme">
+				<img class="main-app__theme-box-icon icon-moon" src="img/icon-moon-dark.svg" alt="An icon of a sun representing light theme">
 			</div>
 		</div>
-		<div class="main-app__view quiz-view"> <!-- Change current view-->
+		<div class="main-app__view start-view"> <!-- Change current view-->
 			<div class="main-app__left-top-content">
 				<div class="main-app__quiz-welcome">
 					<h1 class="text-2 text-light">Welcome to the <span
