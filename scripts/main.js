@@ -1,91 +1,99 @@
+import {ThemeManager} from './ThemeManager.js';
 /* 1. Get the button element to work with */
 document.addEventListener('DOMContentLoaded', init);
 
-function init() {
-	const themeManager = new ThemeManager();
+const mainAppState = {
+	appState: 'start-view',
+	currentTopic: 'HTML',
+	currentQuestions: null,
+	dataLoaded: false,
+	currentQuestion: 1,
+	correctAnswers: 0
 }
 
-class ThemeManager {
-	#themeChangeButton;
-	#themeChangeThumb;
-	#iconSun;
-	#iconMoon;
+function init() {
+	const themeManager = new ThemeManager();
+	const buttonsManager = new ButtonsManager();
+}
+
+/* buttonsManager */
+class ButtonsManager {
+
+	#optionButtonsState;
+	#multiFunctionButtonsState;
+	#optionButtons;
+	#multiFunctionButton;
+	#selectedAnswerButton;
 
 	constructor() {
 		this.init();
 	}
-	
+
 	init() {
-		this.#themeChangeButton = document.querySelector('.main-app__theme-button');
-		this.#themeChangeThumb = document.querySelector('.main-app__theme-button-thumb');
-		this.#iconSun = document.querySelector('.icon-sun');
-		this.#iconMoon = document.querySelector('.icon-moon');
+		this.#optionButtonsState = 'topic-selection';
+		this.#multiFunctionButtonsState = 'waiting-for-submit';
+		this.#selectedAnswerButton = null;
 
-		this.#themeChangeButton.addEventListener('click', () => {
-			this.toggleTheme();
+		this.#optionButtons = document.querySelectorAll('.main-app__button:not(.multi-function-btn)');
+		this.#multiFunctionButton = document.querySelector('.multi-function-btn');
+
+		this.bindEvents();
+	}
+
+	bindEvents() {
+		this.#optionButtons.forEach(button => {
+			button.addEventListener('click', (e) => {
+				this.optionButtonsListener(e);
+			});
 		});
-		this.setTheme(this.calculateCurrentSetting());
-	}
-	
-	calculateCurrentSetting() {
-		const localStorageTheme = getFromLocalStorage('theme');
-		const userPreference = window.matchMedia('(prefers-color-scheme: dark)');
-
-		if (localStorageTheme !== null) {
-			return localStorageTheme;
-		}
-
-		if (userPreference.matches) {
-			return "dark";
-		}
-
-		return "light";
-	}
-	
-	setTheme(targetTheme) {
-		if (targetTheme === 'dark') {
-			document.documentElement.setAttribute('data-theme', targetTheme);
-		} else {
-			document.documentElement.removeAttribute('data-theme');
-		}
-
-		this.modifyButtonThumb(targetTheme);
-		this.updateIcons(targetTheme);
 	}
 
-	toggleTheme() {
-		const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-		const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-		this.setTheme(targetTheme);
-		saveToLocalStorage('theme', targetTheme);
-	}
-
-	modifyButtonThumb(theme) {
-		if (theme === "dark") {
-			this.#themeChangeThumb.classList.add("right-sided");
-		} else {
-			this.#themeChangeThumb.classList.remove("right-sided");
+	optionButtonsListener(e) {
+		switch(this.#optionButtonsState) {
+			case 'topic-selection':
+				this.selectTopic(e.currentTarget);
+				break;
+			case 'waiting-for-submit':
+				this.selectAnswer();
+				break;
+			case 'answer-submitted':
+				break;
 		}
 	}
 
-	updateIcons(theme) {
-		let targetIcons;
-		if (theme === 'dark') {
-			targetIcons = 'light';
-		} else {
-			targetIcons = 'dark';
-		}
-		this.#iconSun.src = `../img/icon-sun-${targetIcons}.svg`;
-		this.#iconMoon.src = `../img/icon-moon-${targetIcons}.svg`;
+	selectTopic(button) {
+		const topic = button.dataset.topic;
+		setTopic(topic);
+	}
+
+	selectAnswer(button) {
+		/* Call UIManager to update the button UI */
+		this.#selectedAnswerButton = button;
 	}
 }
 
-function saveToLocalStorage(property, value) {
-	localStorage.setItem(property, value);
+function setTopic(topic) {
+	mainAppState.currentTopic = topic;
+	console.log(topic);
+}
+
+/* Getting the JSON Data*/
+let dataLoaded;
+async function retrieveDataFromJson() {
+	try {
+		const data = await fetch('../data.json');
+		if (!data.ok) {
+			console.log('Error retrieving JSON data :(');
+		}
+		const fullData = await data.json();
+		dataLoaded = true;
+		console.log(fullData);
+	} catch(error) {
+		console.error('Error retrieving JSON data :(');
+	}
 }
 
 
-function getFromLocalStorage(property) {
-	return localStorage.getItem(property);
-}
+
+
 

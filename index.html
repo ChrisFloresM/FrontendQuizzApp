@@ -16,13 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
 
 	<!-- Scripts -->
-	<script defer src="scripts/main.js"></script>
+	<script type="module" defer src="scripts/main.js"></script>
 
   
   <title>Frontend Mentor | Frontend quiz app</title>
 </head>
 <body>
-	<main class="main-app">
+	<main class="main-app start-view">
 		<div class="main-app__top-box">
 			<div class="main-app__topic-box">
 				<div class="main-app__topic-icon-box btn-accessibility">
@@ -37,7 +37,7 @@
 				<img class="main-app__theme-box-icon icon-moon" src="img/icon-moon-dark.svg" alt="An icon of a sun representing light theme">
 			</div>
 		</div>
-		<div class="main-app__view start-view"> <!-- Change current view-->
+		<div class="main-app__view"> <!-- Change current view-->
 			<div class="main-app__left-top-content">
 				<div class="main-app__quiz-welcome">
 					<h1 class="text-2 text-light">Welcome to the <span
@@ -60,7 +60,7 @@
 			</div>
 			<div class="main-app__right-bottom-content">
 				<div class="main-app__buttons">
-					<button class="main-app__button" type="button">
+					<button class="main-app__button" type="button" data-topic="HTML">
 						<span class="main-app__button-side-content btn-html main-app__topic-icon-box">
 							<img class="main-app__topic-icon-btn" src="img/icon-html.svg" alt="An icon refernt to HTML topic">
 							<span class="main-app--answer-option text-4">A</span>
@@ -68,7 +68,7 @@
 						<span class="main-app__topic-btn-text text-4 text-medium">HTML</span>
 					</button>
 
-					<button class="main-app__button" type="button">
+					<button class="main-app__button" type="button" data-topic="CSS">
 						<span class="main-app__button-side-content btn-css main-app__topic-icon-box">
 							<img class="main-app__topic-icon-btn" src="img/icon-css.svg" alt="An icon refernt to CSS topic">
 							<span class="main-app--answer-option text-4">B</span>
@@ -76,7 +76,7 @@
 						<span class="main-app__topic-btn-text text-4 text-medium">CSS</span>
 					</button>
 
-					<button class="main-app__button" type="button">
+					<button class="main-app__button" type="button" data-topic="JavaScript">
 						<span class="main-app__button-side-content btn-js main-app__topic-icon-box">
 							<img class="main-app__topic-icon-btn" src="img/icon-js.svg" alt="An icon refernt to JS topic">
 							<span class="main-app--answer-option text-4">C</span>
@@ -84,7 +84,7 @@
 						<span class="main-app__topic-btn-text text-4 text-medium">Javascript</span>
 					</button>
 
-					<button class="main-app__button" type="button">
+					<button class="main-app__button" type="button" data-topic="Accesibility">
 						<span class="main-app__button-side-content btn-accessibility main-app__topic-icon-box">
 							<img class="main-app__topic-icon-btn" src="img/icon-accessibility.svg" alt="An icon refernt to accessibility topic">
 							<span class="main-app--answer-option text-4">D</span>

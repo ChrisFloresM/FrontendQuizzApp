@@ -28,7 +28,7 @@ body {
 
 .main-app__top-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -53,6 +53,7 @@ body {
 }
 
 .main-app__theme-box {
+    margin-left: auto;
     display: flex;
     align-items: center;
     gap: var(--spacing-200);
@@ -118,7 +119,8 @@ body {
 .start-view .main-app--answer-option,
 .start-view .multi-function-btn,
 .start-view .main-app__quiz-score-box,
-.start-view .main-app__final-score{
+.start-view .main-app__final-score,
+.start-view .main-app__topic-box{
     display: none;
 }
 
