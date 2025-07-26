@@ -143,19 +143,19 @@ body {
     box-shadow: var(--box-shadow);
 }
 
-.main-app__topic-icon-box.btn-html {
+.main-app__topic-icon-box.btn-HTML {
     background-color: var(--orange-50);
 }
 
-.main-app__topic-icon-box.btn-css {
+.main-app__topic-icon-box.btn-CSS {
     background-color: var(--green-100);
 }
 
-.main-app__topic-icon-box.btn-js {
+.main-app__topic-icon-box.btn-JavaScript {
     background-color: var(--blue-50);
 }
 
-.main-app__topic-icon-box.btn-accessibility {
+.main-app__topic-icon-box.btn-Accessibility {
     background-color: var(--purple-100);
 }
 
