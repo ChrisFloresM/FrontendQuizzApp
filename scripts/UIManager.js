@@ -29,7 +29,7 @@ class UIManager {
 	}
 
 	updateQuestionsUI() {
-		if (!mainAppState.currentQuestions || mainAppState.currentQuestions.length === 0) {
+		if (!this.#mainApplication.mainAppState.currentQuestions || this.#mainApplication.mainAppState.currentQuestions.length === 0) {
 			/* Error occured -> Do not change to next state */
 			console.error('Error retreiving the questions');
 			return;
@@ -43,28 +43,28 @@ class UIManager {
 
 	updateTopicUI() {
 		this.#topicIconBox.forEach(box => {
-			box.className = `main-app__topic-icon-box btn-${mainAppState.currentTopic}`
+			box.className = `main-app__topic-icon-box btn-${this.#mainApplication.mainAppState.currentTopic}`
 		});
 
 		this.#topicIcon.forEach(icon => {
-			icon.src = iconSrcs[mainAppState.currentTopic];
+			icon.src = this.#mainApplication.iconSrcs[this.#mainApplication.mainAppState.currentTopic];
 		});
 
 		this.#topicName.forEach(name => {
-			name.textContent = mainAppState.currentTopic;
+			name.textContent = this.#mainApplication.mainAppState.currentTopic;
 		});
 	}
 
 	updateQuestionNumberUI() {
-		this.#questionNumber.textContent = (mainAppState.currentQuestion + 1).toString();
+		this.#questionNumber.textContent = (this.#mainApplication.mainAppState.currentQuestion + 1).toString();
 	}
 
 	updateCurrentQuestionUI() {
-		this.#currentQuestion.textContent = mainAppState.currentQuestions[mainAppState.currentQuestion].question;
+		this.#currentQuestion.textContent = this.#mainApplication.mainAppState.currentQuestions[this.#mainApplication.mainAppState.currentQuestion].question;
 	}
 
 	updatePorgressBarUI() {
-		this.#progress = ((mainAppState.currentQuestion + 1) / 10) * 100;
+		this.#progress = ((this.#mainApplication.mainAppState.currentQuestion + 1) / 10) * 100;
 		this.#progressBar.style.width = `${this.#progress}%`;
 	}
 
@@ -72,7 +72,7 @@ class UIManager {
 		const optionButtons = document.querySelectorAll('.main-app__topic-btn-text');
 		let optionNumber = 0;
 		optionButtons.forEach(button => {
-			button.textContent = mainAppState.currentQuestions[mainAppState.currentQuestion].options[optionNumber];
+			button.textContent = this.#mainApplication.mainAppState.currentQuestions[this.#mainApplication.mainAppState.currentQuestion].options[optionNumber];
 			optionNumber++;
 		});
 	}

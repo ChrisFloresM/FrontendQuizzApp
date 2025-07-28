@@ -2,7 +2,7 @@ export {MainApplication}
 
 import {ThemeManager} from './ThemeManager.js';
 import {ButtonsManager} from './ButtonsManager.js';
-import {UIManager} from './UIManager';
+import {UIManager} from './UIManager.js';
 
 
 class MainApplication {
@@ -58,7 +58,7 @@ class MainApplication {
 	}
 
 	async quizStateEntry() {
-		await this.#uiManager.setQuizQuestions();
+		await this.setQuizQuestions();
 	}
 
 	async setQuizQuestions() {

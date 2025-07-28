@@ -15,8 +15,6 @@ function init() {
 
 
 
-
-
 /* Getting the JSON Data*/
 
 

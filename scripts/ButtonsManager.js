@@ -36,7 +36,7 @@ class ButtonsManager {
 			});
 		});
 
-		this.#selectedAnswerButton.addEventListener('click', (e) => {
+		this.#multiFunctionButton.addEventListener('click', (e) => {
 			this.multiFunctinButtonListener(e);
 		})
 	}
