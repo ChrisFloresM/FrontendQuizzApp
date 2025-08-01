@@ -48,7 +48,7 @@ class ButtonsManager {
 				this.selectTopic(e.currentTarget);
 				break;
 			case 'waiting-for-submit':
-				this.selectAnswer();
+				this.selectAnswer(e.currentTarget);
 				break;
 			case 'answer-submitted':
 				break;
@@ -59,10 +59,18 @@ class ButtonsManager {
 		const topic = button.dataset.topic;
 		this.#mainApplication.setTopic(topic);
 		this.#mainApplication.setApplicationState('quiz-view');
+		this.setOptionButtonsState('waiting-for-submit');
+	}
+
+	setOptionButtonsState(state) {
+		this.#optionButtonsState = state;
 	}
 
 	selectAnswer(button) {
 		this.#selectedAnswerButton = button;
+		this.#uiManager.updateSelectedButtonUI(button);
+		this.#uiManager.updateMultiFunctionButtonUI(this.#multiFunctionButton);
+		this.setMultiFunctionButtonState('submit');
 	}
 
 	/* =========== multiFunction button states =========== */
@@ -72,6 +80,7 @@ class ButtonsManager {
 				this.waitingSelectionError();
 				break;
 			case 'submit':
+				this.submitAnswer();
 				break;
 			case 'next-question':
 				break;
@@ -80,15 +89,33 @@ class ButtonsManager {
 		}
 	}
 
+	setMultiFunctionButtonState(state) {
+		this.#multiFunctionButtonsState = state;
+	}
+
 	waitingSelectionError() {
 		/* Call UI manager to set error message "Waiting for selection" */
 	}
 
 	submitAnswer() {
 		/* Compare text content of selected answer with correct answer content */
+		const answerIsCorrect = this.isAnswerCorrect();
 		/* If answer was correct, increase number of correctAnswers */
+		if (answerIsCorrect) {
+			this.#mainApplication.increaseCorrectAnswers();
+		} else {
+
+		}
 		/* Call the UI manager to update accordingly */
+
 		/* change state to next-question state */
+		this.setOptionButtonsState('answer-submitted');
+		this.setMultiFunctionButtonState('next-question');
+	}
+
+	isAnswerCorrect() {
+		const selectedButtonAnswer = this.#selectedAnswerButton.querySelector('.main-app__topic-btn-text');
+		return this.#mainApplication.getCorrectAnswer() === selectedButtonAnswer.textContent;
 	}
 
 	goToNextQuestion() {

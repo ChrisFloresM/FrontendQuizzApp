@@ -1,7 +1,8 @@
 export {UIManager};
 
 class UIManager {
-	#mainApplication
+	#mainApplication;
+	#mainApplicationUI;
 
 	#topicIconBox;
 	#topicIcon;
@@ -26,6 +27,7 @@ class UIManager {
 		this.#progressBar = document.querySelector('.main-app__quiz-current-progress');
 
 		this.#mainApplication = mainApplication;
+		this.#mainApplicationUI = document.querySelector('.main-app');
 	}
 
 	updateQuestionsUI() {
@@ -75,5 +77,29 @@ class UIManager {
 			button.textContent = this.#mainApplication.mainAppState.currentQuestions[this.#mainApplication.mainAppState.currentQuestion].options[optionNumber];
 			optionNumber++;
 		});
+	}
+
+	updateSelectedButtonUI(button) {
+		/* Check if there is already a selected answer */
+		const selectedButton = document.querySelector('.main-app__button.selected-option');
+
+		if (selectedButton) {
+			selectedButton.classList.remove('selected-option');
+		}
+
+		button.classList.add('selected-option');
+	}
+
+	updateMultiFunctionButtonUI(button) {
+		button.classList.remove('not-selected');
+	}
+
+	updateApplicationStateUI(currentState, nextState) {
+		this.#mainApplicationUI.classList.remove(currentState);
+		this.#mainApplicationUI.classList.add(nextState);
+	}
+
+	setCorrectAnswerUI() {
+
 	}
 }
