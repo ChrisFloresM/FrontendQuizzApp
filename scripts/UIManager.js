@@ -14,6 +14,7 @@ class UIManager {
 	#progress;
 
 	#correctAnswerNumber;
+	#appErrorMessage;
 
 	constructor(mainApplication) {
 		/* Topic related elements */
@@ -30,6 +31,9 @@ class UIManager {
 
 		/* Score elements */
 		this.#correctAnswerNumber = document.querySelector('.total-score');
+
+		/*Error message*/
+		this.#appErrorMessage = document.querySelector('.main-app__error');
 
 		this.#mainApplication = mainApplication;
 		this.#mainApplicationUI = document.querySelector('.main-app');
@@ -152,6 +156,18 @@ class UIManager {
 
 		const selectedButton = document.querySelector('.main-app__button.selected-option');
 		selectedButton.classList.add('wrong-option');
+	}
+
+	displayWaitingSelectionError() {
+		if (this.#appErrorMessage.classList.contains('hidden')) {
+			this.#appErrorMessage.classList.remove('hidden');
+		}
+	}
+
+	removeWaitingSelectionError() {
+		if (!this.#appErrorMessage.classList.contains('hidden')) {
+			this.#appErrorMessage.classList.add('hidden');
+		}
 	}
 
 	clearAnswersUI() {

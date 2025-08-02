@@ -1,12 +1,16 @@
 # Password Generator App
 
-A very simple and responsive web app that generates a random password based on attributes requested by user. It then calculates a rating for the password based on the calculated entropy.
+A web application of a frontend quizz. The user selects a topic and a series of 10 questions is displayed. For each one, the user can select an answer and, after submitting the answer
+the correct option is displayed (and also if the selected option is not correct).
+This application is responsive and usage local storage to store the user's theme preferences.
 
 ## Practice and reinforce:
 - Responsive design
 - DOM manipulation
 - Clean and maintanable code
-- Input form validations
+- Local Storage
+- Theme management
+- OOP
 
 ## Technologies:
 - HTML5
@@ -15,20 +19,15 @@ A very simple and responsive web app that generates a random password based on a
 
 
 ## Main features:
--  Allows user to input:
-    - Password Length
-    - Password attributes: include lowercase, include uppercase, include numbers, include symbols (special characters)
-- Displays:
-    - A randon generated password
-- Error handing for invalid requested attributes
-- A button to copy to clipboard the generated password.
-- Fully responsive for mobile, tablet and desktop
+-  Allows user to select a frontend related topic
+-  Displays:
+    - The correct answer for each questions after submitting the selected option
 
 ## How to use
-1. Select a password length
-2. Choose which attributes must the password contains
-3. Generate the password
-4. If you are satisfied with the rating, copy the generated password to the clipboard.
+1. Select a topic
+2. Naviage through the topic's questions
+3. Select your answer from the given options
+4. Click 'Submit' button.
 
 ## **Desktop preview:**
 ![Screenshot](./preview/desktop-preview.png)
@@ -37,4 +36,4 @@ A very simple and responsive web app that generates a random password based on a
 ![Screenshot](./preview/mobile-preview.png)
 
 ## Live site url:
-https://cf-passwordgenerator.netlify.app/
+https://cf-fequizz.netlify.app/

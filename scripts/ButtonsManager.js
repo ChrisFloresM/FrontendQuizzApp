@@ -70,6 +70,7 @@ class ButtonsManager {
 
 	selectAnswer(button) {
 		this.#selectedAnswerButton = button;
+		this.#uiManager.removeWaitingSelectionError();
 		this.#uiManager.updateSelectedButtonUI(button);
 		this.#uiManager.enableMultiFunctionButtonUI(this.#multiFunctionButton);
 		this.setMultiFunctionButtonState('submit');
@@ -98,7 +99,7 @@ class ButtonsManager {
 	}
 
 	waitingSelectionError() {
-		/* Call UI manager to set error message "Waiting for selection" */
+		this.#uiManager.displayWaitingSelectionError();
 	}
 
 	submitAnswer() {

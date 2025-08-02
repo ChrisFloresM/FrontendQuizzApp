@@ -370,6 +370,16 @@ body {
         font-size: 62.5%;
     }
 
+    .main-app__left-top-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .main-app__right-bottom-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
     .main-app__view {
         flex-direction: column;
         gap: var(--spacing-800);
