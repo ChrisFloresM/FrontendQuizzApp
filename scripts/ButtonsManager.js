@@ -11,6 +11,8 @@ class ButtonsManager {
 	#multiFunctionButton;
 	#selectedAnswerButton;
 
+	#maxQuestions = 10;
+
 	constructor(mainApplication, uiManager) {
 		this.init(mainApplication, uiManager);
 	}
@@ -20,7 +22,7 @@ class ButtonsManager {
 		this.#uiManager = uiManager;
 
 		this.#optionButtonsState = 'topic-selection';
-		this.#multiFunctionButtonsState = 'waiting-for-submit';
+		this.#multiFunctionButtonsState = 'waiting-for-selection';
 		this.#selectedAnswerButton = null;
 
 		this.#optionButtons = document.querySelectorAll('.main-app__button:not(.multi-function-btn)');
@@ -69,7 +71,7 @@ class ButtonsManager {
 	selectAnswer(button) {
 		this.#selectedAnswerButton = button;
 		this.#uiManager.updateSelectedButtonUI(button);
-		this.#uiManager.updateMultiFunctionButtonUI(this.#multiFunctionButton);
+		this.#uiManager.enableMultiFunctionButtonUI(this.#multiFunctionButton);
 		this.setMultiFunctionButtonState('submit');
 	}
 
@@ -83,8 +85,10 @@ class ButtonsManager {
 				this.submitAnswer();
 				break;
 			case 'next-question':
+				this.goToNextQuestion();
 				break;
 			case 'start-again':
+				this.startAgain();
 				break;
 		}
 	}
@@ -98,17 +102,16 @@ class ButtonsManager {
 	}
 
 	submitAnswer() {
-		/* Compare text content of selected answer with correct answer content */
 		const answerIsCorrect = this.isAnswerCorrect();
-		/* If answer was correct, increase number of correctAnswers */
+
 		if (answerIsCorrect) {
 			this.#mainApplication.increaseCorrectAnswers();
+			this.#uiManager.setCorrectAnswerUI();
 		} else {
-
+			this.#uiManager.setWrongAnswerUI();
 		}
-		/* Call the UI manager to update accordingly */
 
-		/* change state to next-question state */
+		this.#uiManager.updateMultiFunctionButtonText(this.#multiFunctionButton, 'Next question');
 		this.setOptionButtonsState('answer-submitted');
 		this.setMultiFunctionButtonState('next-question');
 	}
@@ -119,13 +122,32 @@ class ButtonsManager {
 	}
 
 	goToNextQuestion() {
-		/* validate if current question is not the last question*/
-		/* If it is the last question move application state to 'score state'*/
-		/* Call UI manager to update accordingly */
-		/* Move state to 'start-again' */
+		this.#mainApplication.increaseQuestionNumber();
+
+		if (this.#mainApplication.getQuestionNumber() >= this.#maxQuestions) {
+			this.#mainApplication.setApplicationState('score-view');
+			this.#uiManager.updateMultiFunctionButtonText(this.#multiFunctionButton, 'Restart quiz');
+			this.setMultiFunctionButtonState('start-again');
+			return;
+		}
+
+		this.#mainApplication.setQuestionState();
+		this.#uiManager.updateQuestionsUI();
+
+		this.#uiManager.disableMultiFunctionButtonUI(this.#multiFunctionButton);
+		this.#uiManager.updateMultiFunctionButtonText(this.#multiFunctionButton, 'Submit answer');
+
+		this.setOptionButtonsState('waiting-for-submit');
+		this.setMultiFunctionButtonState('waiting-for-selection');
 	}
 
 	startAgain() {
 		/* Move application state to 'start' */
+		this.#mainApplication.setApplicationState('start-view');
+		this.setOptionButtonsState('topic-selection');
+		this.setMultiFunctionButtonState('waiting-for-selection');
+		this.#uiManager.resetOptionButtonsUI(this.#optionButtons);
+		this.#uiManager.disableMultiFunctionButtonUI(this.#multiFunctionButton);
+		this.#uiManager.updateMultiFunctionButtonText(this.#multiFunctionButton, 'Submit answer');
 	}
 }

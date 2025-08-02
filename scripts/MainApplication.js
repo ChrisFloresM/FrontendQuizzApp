@@ -12,13 +12,12 @@ class MainApplication {
 
 	mainAppState = {
 		appState: 'start-view',
-		jsonData: null,
 		currentTopic: 'HTML',
+		jsonData: null,
 		currentQuestions: null,
 		dataLoaded: false,
-		currentQuestion: 0,
+		currentQuestionNumber: 0,
 		correctAnswers: 0,
-		correctAnswer: null
 	}
 
 	questionState = {
@@ -44,9 +43,46 @@ class MainApplication {
 		this.#buttonsManager = new ButtonsManager(this, this.#uiManager);
 	}
 
+	getCurrentTopic() {
+		return this.mainAppState.currentTopic
+	}
+
+	getQuestionNumber() {
+		return this.mainAppState.currentQuestionNumber;
+	}
+
+	getCurrentQuestion() {
+		return this.questionState.currentQuestion;
+	}
+
+	getCorrectAnswer() {
+		return this.questionState.correctAnswer;
+	}
+
+	getQuestionOptions() {
+		return this.questionState.currentOptions;
+	}
+
+	areCurrentQuestionsInvalid() {
+		return !this.mainAppState.currentQuestions || this.mainAppState.currentQuestions.length === 0
+	}
+
+	increaseCorrectAnswers() {
+		this.mainAppState.correctAnswers++;
+	}
+
+	increaseQuestionNumber() {
+		this.mainAppState.currentQuestionNumber++;
+	}
+
+	setQuestionState() {
+		this.questionState.currentQuestion = this.mainAppState.currentQuestions[this.mainAppState.currentQuestionNumber].question;
+		this.questionState.currentOptions = this.mainAppState.currentQuestions[this.mainAppState.currentQuestionNumber].options;
+		this.questionState.correctAnswer = this.mainAppState.currentQuestions[this.mainAppState.currentQuestionNumber].answer;
+	}
+
 	setTopic(topic) {
 		this.mainAppState.currentTopic = topic;
-		console.log(topic);
 	}
 
 	setApplicationState(state) {
@@ -55,24 +91,19 @@ class MainApplication {
 
 		switch(state) {
 			case 'start-view':
+				this.startStateEntry();
 				break;
 			case 'quiz-view':
 				this.quizStateEntry().then(result => {});
+				break;
+			case 'score-view':
+				this.scoreStateEntry();
+				break;
 		}
 	}
 
-	getCorrectAnswer() {
-		return this.mainAppState.currentQuestions[this.mainAppState.currentQuestion].answer;
-	}
-
-	increaseCorrectAnswers() {
-		this.mainAppState.correctAnswers++;
-	}
-
-	setQuestionState() {
-/*		this.questionState.currentQuestion = this.#mainApplication.mainAppState.currentQuestions[this.#mainApplication.mainAppState.currentQuestion].question;
-		this.questionState.currentOptions = this.#mainApplication.mainAppState.currentQuestions[this.#mainApplication.mainAppState.currentQuestion].options;
-		this.questionState.correctAnswer = this.mainAppState.currentQuestions[this.mainAppState.currentQuestion].answer;*/
+	startStateEntry() {
+		this.#uiManager.clearAnswersUI();
 	}
 
 	async quizStateEntry() {
@@ -85,9 +116,15 @@ class MainApplication {
 			console.log(this.mainAppState.jsonData);
 		}
 		this.mainAppState.currentQuestions = this.mainAppState.jsonData.quizzes.find(quiz => quiz.title === this.mainAppState.currentTopic)?.questions || [];
+		this.initApplicationCounters();
 		this.setQuestionState();
 		this.#uiManager.updateQuestionsUI();
 		this.#uiManager.updateTopicUI();
+	}
+
+	initApplicationCounters() {
+		this.mainAppState.currentQuestionNumber = 0;
+		this.mainAppState.correctAnswers = 0;
 	}
 
 	async getDataFromJson() {
@@ -100,5 +137,9 @@ class MainApplication {
 		} catch(error) {
 			console.error('Error retrieving JSON data :(');
 		}
+	}
+
+	scoreStateEntry() {
+		this.#uiManager.updateCorrectAnswersNumberUI(this.mainAppState.correctAnswers);
 	}
 }
